@@ -1,0 +1,6 @@
+- name: Run system maintenance
+  hosts: all
+  become: yes
+  roles:
+    - role: maintenance
+      tags: ["uptime","update","upgrade","cleanup"]

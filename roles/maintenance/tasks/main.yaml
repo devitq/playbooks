@@ -1,0 +1,35 @@
+---
+- name: Check system uptime
+  ansible.builtin.command:
+    cmd: uptime
+  register: uptime_result
+  changed_when: false
+  tags:
+    - uptime
+
+- name: Debug uptime
+  ansible.builtin.debug:
+    msg: "System uptime: {{ uptime_result.stdout }}"
+  tags:
+    - uptime
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_valid_time }}"
+  notify: Cache updated
+  tags:
+    - update
+
+- name: Perform full dist-upgrade
+  ansible.builtin.apt:
+    upgrade: dist
+  tags:
+    - upgrade
+
+- name: Clean up apt cache
+  ansible.builtin.apt:
+    autoclean: yes
+    autoremove: yes
+  tags:
+    - cleanup
