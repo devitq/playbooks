@@ -1,0 +1,5 @@
+- name: Install/update and setup Docker
+  hosts: all
+  become: yes
+  roles:
+    - role: docker_install
