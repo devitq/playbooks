@@ -1,0 +1,7 @@
+- name: Setup backup
+  hosts: all
+  roles:
+  - role: backup
+    borgmatic_hooks:
+      before_backup:
+      - echo "`date` - Starting backup."
