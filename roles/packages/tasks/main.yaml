@@ -1,0 +1,18 @@
+---
+- name: Install required packages
+  ansible.builtin.package:
+    name: "{{ packages_install }}"
+    state: present
+  when: packages_install | length > 0
+
+- name: Remove unwanted packages
+  ansible.builtin.package:
+    name: "{{ packages_remove }}"
+    state: absent
+  when: packages_remove | length > 0
+
+- name: Update specified packages
+  ansible.builtin.package:
+    name: "{{ packages_update }}"
+    state: latest
+  when: packages_update | length > 0

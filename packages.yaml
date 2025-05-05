@@ -1,0 +1,18 @@
+- name: Actualize packages
+  hosts: all
+  become: yes
+  vars:
+    packages_install:
+      - vim
+      - htop
+      - atop
+      - caddy
+      - curl
+      - nmap
+      - socat
+      - strace
+    packages_remove:
+      - zabbix-agent-timeweb
+    packages_update:
+  roles:
+    - role: packages
