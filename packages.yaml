@@ -14,5 +14,6 @@
     packages_remove:
       - zabbix-agent-timeweb
     packages_update:
+      - htop
   roles:
     - role: packages
